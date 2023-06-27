@@ -76,9 +76,9 @@ class PuzzleGraph: # 探索木全体を管理
 
         return path[::-1] # 配列を逆順にして返す
 
-start_board = [[8, 5, 7],
-               [3, 1, 6],
-               [2, 4, 0]]
+start_board = [[5, 4, 1],
+               [6, 7, 8],
+               [3, 0, 2]]
 
 goal_board = [[1, 2, 3],
               [4, 5, 6],

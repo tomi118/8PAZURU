@@ -64,27 +64,6 @@ def show_board():
         print(show_text)
         show_text = ''
 
-# def move_panel(current_state, before_state):
-#     global puzzle_states
-#     actions = []
-#     if space[0] - 1 >= 0:
-#         actions.append([-1,0]) #左
-#     if space[0] + 1 < edge_length:
-#         actions.append([1,0]) #右
-#     if space[1] - 1 >= 0:
-#         actions.append([0,-1]) #上
-#     if space[1] + 1 < edge_length:
-#         actions.append([0,1]) #下
-#     for action in actions:
-#         space_number = space[1] * edge_length + space[0] #現在パネルがない場所の配列の位置
-#         change_square = squares[space_number + (action[1] * edge_length + action[0])] #次に空白になるパネルの位置
-#         squares[space_number].name = change_square.name
-#         space = [change_square.col, change_square.row]
-#         change_square.name = 0
-#         changed_state = SquarePuzzle(, current_state.count+1)
-#         if ( !== current_state.board):
-#         puzzle_states.append()
-
 def play_bfs():
     global puzzle_states
     puzzle_states.append(SquarePuzzle(squares, 0))
@@ -95,7 +74,7 @@ def play_bfs():
 def play():
     set_board()
     show_board()
-    set_randam(1000)
+    set_randam(99)
     show_board()
 
 
