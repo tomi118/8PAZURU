@@ -23,7 +23,7 @@ def create_initial_board():
 
         # ボードが解けるものであれば、2次元配列に変換して返す
         if is_solvable(board):
-            return np.array(board).reshape((3, 3)) #初期ボードを表現する2次元numpy配列
+            return np.array(board).reshape((3, 3)).tolist() #初期ボードを表現する2次元配列
 
 
 # 使用例
