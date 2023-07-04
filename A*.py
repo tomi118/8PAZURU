@@ -1,5 +1,4 @@
 import numpy as np
-from collections import deque
 import heapq
 
 class Puzzle:
@@ -46,11 +45,11 @@ class Puzzle:
 
     def calculate_heuristic(self, goal): # 現在の状態からゴールまでの推定コストを計算する。
         # abs:絶対値を返す。 b:現在のパズルの位置, g:目標のパズルの位置
-        return sum(abs(b % 3 - g % 3) + abs(b//3 - g//3)
+        return sum(abs(b % 3 - g % 3) + abs(b//3 - g//3) #最大値は4
                    for b, g in ((self.board[i,j], goal[i,j])
                                 for i in range(3) for j in range(3)))
 
-    def __lt__(self, other):
+    def __lt__(self, other): # heapq モジュールを使ったプライオリティキューで使用される。ヒューリスティック値が小さいパズルオブジェクトを優先的にキューから取り出すために使用される。
         return self.f < other.f
 
 class PuzzleGraph:

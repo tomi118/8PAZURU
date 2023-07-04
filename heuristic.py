@@ -1,5 +1,4 @@
 import numpy as np
-from collections import deque
 import heapq
 
 class Puzzle:
@@ -40,18 +39,13 @@ class Puzzle:
 
         return possible_moves
 
-    def calculate_heuristic(self, goal):
-        return sum(abs(b % 3 - g % 3) + abs(b//3 - g//3)
+    def calculate_heuristic(self, goal): # 現在の状態からゴールまでの推定コストを計算する。
+        # abs:絶対値を返す。 b:現在のパズルの位置, g:目標のパズルの位置
+        return sum(abs(b % 3 - g % 3) + abs(b//3 - g//3) #最大値は4
                    for b, g in ((self.board[i,j], goal[i,j])
                                 for i in range(3) for j in range(3)))
 
-    def __eq__(self, other):
-        return np.array_equal(self.board, other.board)
-
-    def __hash__(self):
-        return hash(str(self.board))
-
-    def __lt__(self, other):
+    def __lt__(self, other): # heapq モジュールを使ったプライオリティキューで使用される。ヒューリスティック値が小さいパズルオブジェクトを優先的にキューから取り出すために使用される。
         return self.h < other.h
 
 
@@ -104,6 +98,7 @@ path, states_explored = graph.heuristic()
 # 探索の結果の出力
 print(f'解答までの総ステップ数: {len(path) - 1}')
 print(f"探索した総状態数: {states_explored}")
+
 for i, board in enumerate(path):
     print(f"Step {i}")
     print(np.array(board))

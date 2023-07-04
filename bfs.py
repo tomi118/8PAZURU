@@ -54,13 +54,13 @@ class PuzzleGraph: # 探索木全体を管理
             total_states_explored += 1
 
             if np.array_equal(current.board, self.goal.board): # ゴールの状態と一致しているかを比較する。
-                return self.get_path(parent_map, current), total_states_explored, len(visited)
+                return self.get_path(parent_map, current), total_states_explored
 
-            for neighbor in current.get_possible_moves():
-                if neighbor.board.tobytes() not in visited:
-                    queue.append(neighbor) # queueの末尾にneighborを追加
-                    visited.add(neighbor.board.tobytes())
-                    parent_map[neighbor.board.tobytes()] = current
+            for move in current.get_possible_moves():
+                if move.board.tobytes() not in visited:
+                    queue.append(move) # queueの末尾にneighborを追加
+                    visited.add(move.board.tobytes())
+                    parent_map[move.board.tobytes()] = current
 
         return None
 
@@ -83,12 +83,11 @@ goal_board = [[1,2,3],[4,5,6],[7,8,0]]
 graph = PuzzleGraph(start_board, goal_board)
 
 # 幅優先探索で解を探す
-path, total_states_explored, total_unique_states = graph.bfs()
+path, total_states_explored = graph.bfs()
 
 # 探索の結果の出力
 print(f'解答までの総ステップ数: {len(path) - 1}')
 print(f'探索した総状態数: {total_states_explored}')
-print(f'探索したユニークな状態数: {total_unique_states}')
 
 for i, board in enumerate(path):
     print(f'\nステップ {i}')
