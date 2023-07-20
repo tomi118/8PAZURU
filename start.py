@@ -1,3 +1,5 @@
+#初期状態を生成するためのプログラム
+
 import random
 import numpy as np
 
